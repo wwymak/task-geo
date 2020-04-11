@@ -19,6 +19,7 @@ except IOError:
 
 install_requires = [
     'pandas',
+    'pyshp',
     'requests',
     'jupyter',
     'hdx-python-api'

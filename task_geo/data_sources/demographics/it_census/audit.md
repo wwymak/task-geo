@@ -4,7 +4,9 @@
 
 - **Description**: Explain briefly what kind of data the dataset provides.
 - **Credits**: Authors of the original data.
-- **Source**: Link to the raw source.
+- **Source**:
+    - population by different regional levels: http://demo.istat.it/pop2019
+    - italian communes to province mapping https://www.istat.it/it/archivio/6789#Elencodeicodiciedelledenominazionidelleunitterritoriali-0
 
 ## Description
 
