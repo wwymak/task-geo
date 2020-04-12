@@ -9,13 +9,14 @@ from io import BytesIO
 from zipfile import ZipFile
 
 import shapefile
+from shapely.geometry import shape
 import pandas as pd
 import requests
 
 URL = 'http://www.istat.it/storage/cartografia/confini_amministrativi/generalizzati/Limiti01012020_g.zip'
 
 
-def it_regions_boundary_connector():
+def _it_area_data_connector():
     zipped = requests.get(URL)
     zipdata = BytesIO(zipped.content)
     with ZipFile(zipdata) as content:
@@ -25,15 +26,26 @@ def it_regions_boundary_connector():
 
         fields = [x[0] for x in shapefile_reader.fields][1:]
         records = [y[:] for y in shapefile_reader.records()]
-        geometries = [s.points for s in shapefile_reader.shapes()]
-        shape_type = shapefile_reader.shapeType
+        # not recording the geometries for now: this involves reprojecting from epsg:32632 to EPSG:4326 which requires reprojection libs which are hard to install without conda...
         data = pd.DataFrame(columns=fields, data=records)
-        data["geometry"] = geometries
 
     return data
 
-if __name__ == "__main__":
-    data = it_regions_boundary_connector()
-    #['COD_RIP', 'COD_REG', 'COD_PROV', 'COD_CM', 'COD_UTS', 'PRO_COM',
-       # 'PRO_COM_T', 'COMUNE', 'COMUNE_A', 'CC_UTS', 'SHAPE_AREA', 'SHAPE_LEN']
-    data.head()
+
+def _it_area_data_formatter(data):
+    data = data.copy()
+    data = data.rename(columns = {
+        'PRO_COM': 'city_code',
+        'COMUNE': 'city',
+        'SHAPE_AREA': 'area'
+    })
+    # convert area in m^2 to km^2
+    data['area'] = data['area'] / 1e6
+    data = data[['city_code', 'city', 'area']]
+    return data
+
+
+def it_area_data():
+    data = _it_area_data_connector()
+    data = _it_area_data_formatter(data)
+    return data
