@@ -25,7 +25,10 @@ def it_regions_boundary_connector():
 
         fields = [x[0] for x in shapefile_reader.fields][1:]
         records = [y[:] for y in shapefile_reader.records()]
+        geometries = [s.points for s in shapefile_reader.shapes()]
+        shape_type = shapefile_reader.shapeType
         data = pd.DataFrame(columns=fields, data=records)
+        data["geometry"] = geometries
 
     return data
 

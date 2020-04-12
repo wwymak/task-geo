@@ -12,7 +12,7 @@ URL = 'https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-it
 
 
 def it_territorial_units_connector():
-    data = pd.read_csv(URL)
+    data = pd.read_csv(URL, encoding='latin-1', sep=';')
     return data
 
 if __name__ == "__main__":
@@ -20,6 +20,11 @@ if __name__ == "__main__":
     data.head()
 
     """
+    'Ripartizione geografica' = big region name
+    'Denominazione dell'Unità territoriale sovracomunale \n(valida a fini statistici)' province (torino)
+    'Denominazione regione' = region name (piemonte)
+    'Denominazione in italiano' = 'commune name'
+
     cols  =
     ['Codice Regione',
        'Codice dell'Unità territoriale sovracomunale \n(valida a fini statistici)',
