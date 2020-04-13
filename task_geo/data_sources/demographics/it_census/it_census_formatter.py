@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 
 from task_geo.data_sources.demographics.it_census.it_area_data import it_area_data
+from task_geo.data_sources.demographics.it_census.it_territorial_units import it_territorial_units
+
 TRANSLATED_COLUMNS = {
     'Codice comune': 'city_code',
     'Denominazione': 'city',
@@ -26,6 +28,9 @@ TRANSLATED_COLUMNS = {
 
 
 def it_census_formatter(raw_data):
+    city_area_data = it_area_data()
+    territorial_name_mappings = it_territorial_units()
+
     raw_data = raw_data.rename(columns=TRANSLATED_COLUMNS)
     raw_data = raw_data[['city_code','city', 'age', 'total_males', 'total_females']]
     raw_data['population_by_age'] = raw_data['total_males'] + raw_data['total_females']
@@ -74,17 +79,20 @@ def it_census_formatter(raw_data):
         'ratio_age_60-64', 'ratio_age_65-69', 'ratio_age_70-74',
         'ratio_age_75-79', 'ratio_age_80_plus', 'ratio_age_unknown']]
 
-    city_area_data = it_area_data()
+
     data_by_age_groups_pivot = data_by_age_groups_pivot\
         .merge(city_area_data.set_index('city_code'), left_index=True, right_index=True,
+               suffixes=('', '_duplicated'))\
+        .merge(territorial_name_mappings, left_index=True, right_index=True,
                suffixes=('', '_duplicated'))\
         .drop(columns=[
             column for column in data_by_age_groups_pivot.columns if '_duplicated' in column])
     data_by_age_groups_pivot['population_density'] = \
         data_by_age_groups_pivot['population'] / data_by_age_groups_pivot['area']
-    data_by_age_groups_pivot['country'] = 'Italy'
+    data_by_age_groups_pivot['country'] = 'IT'
     ordered_columns = [
-        'country', 'city', 'area', 'population', 'population_density', 'male_ratio', 'female_ratio',
+        'country', 'region', 'sub_region', 'city', 'area', 'population',
+        'population_density', 'male_ratio', 'female_ratio',
         'ratio_age_0-4', 'ratio_age_10-14', 'ratio_age_15-19',
         'ratio_age_20-24', 'ratio_age_25-29', 'ratio_age_30-34',
         'ratio_age_35-39', 'ratio_age_40-44', 'ratio_age_45-49',
