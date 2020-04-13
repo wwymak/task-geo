@@ -1,7 +1,7 @@
 from task_geo.data_sources.covid.cds import cds
 from task_geo.data_sources.covid.nyt import nyt
-from task_geo.data_sources.demographics.us_census import us_census
 from task_geo.data_sources.demographics.it_census import it_census
+from task_geo.data_sources.demographics.us_census import us_census
 from task_geo.data_sources.hdx import hdx_acap
 from task_geo.data_sources.noaa import noaa_api
 

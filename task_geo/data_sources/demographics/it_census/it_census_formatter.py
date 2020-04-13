@@ -32,7 +32,7 @@ def it_census_formatter(raw_data):
     territorial_name_mappings = it_territorial_units()
 
     raw_data = raw_data.rename(columns=TRANSLATED_COLUMNS)
-    raw_data = raw_data[['city_code','city', 'age', 'total_males', 'total_females']]
+    raw_data = raw_data[['city_code', 'city', 'age', 'total_males', 'total_females']]
     raw_data['population_by_age'] = raw_data['total_males'] + raw_data['total_females']
     population_by_city = raw_data.groupby(['city_code'])[[
         'total_males', 'total_females']].sum()
@@ -62,10 +62,11 @@ def it_census_formatter(raw_data):
     data_by_age_groups_pivot = data_by_age_groups_pivot.merge(
         population_by_city, left_index=True, right_index=True)
 
-    age_columns = ['age_0-4', 'age_10-14', 'age_15-19', 'age_20-24', 'age_25-29',
-       'age_30-34', 'age_35-39', 'age_40-44', 'age_45-49', 'age_5-9',
-       'age_50-54', 'age_55-59', 'age_60-64', 'age_65-69', 'age_70-74',
-       'age_75-79', 'age_80_plus', 'age_unknown']
+    age_columns = [
+        'age_0-4', 'age_10-14', 'age_15-19', 'age_20-24', 'age_25-29',
+        'age_30-34', 'age_35-39', 'age_40-44', 'age_45-49', 'age_5-9',
+        'age_50-54', 'age_55-59', 'age_60-64', 'age_65-69', 'age_70-74',
+        'age_75-79', 'age_80_plus', 'age_unknown']
 
     for age_group in age_columns:
         data_by_age_groups_pivot[f"ratio_{age_group}"] = \
@@ -78,7 +79,6 @@ def it_census_formatter(raw_data):
         'ratio_age_5-9', 'ratio_age_50-54', 'ratio_age_55-59',
         'ratio_age_60-64', 'ratio_age_65-69', 'ratio_age_70-74',
         'ratio_age_75-79', 'ratio_age_80_plus', 'ratio_age_unknown']]
-
 
     data_by_age_groups_pivot = data_by_age_groups_pivot\
         .merge(city_area_data.set_index('city_code'), left_index=True, right_index=True,

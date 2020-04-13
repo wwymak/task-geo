@@ -1,10 +1,3 @@
-"""Retrieve territorial names from Italian National Institute of Statistics.
-This dataset helps to link communes with their parent provinces and regions
-
-Credits: https://www.istat.it/it/archivio/6789
-License: http://creativecommons.org/licenses/by/3.0/it/
-
-"""
 
 import pandas as pd
 
@@ -12,7 +5,8 @@ URL = 'https://www.istat.it/storage/codici-unita-amministrative/Elenco-comuni-it
 
 TRANSLATED_COLUMNS = {
     'Denominazione in italiano': 'city',
-    "Denominazione dell'Unità territoriale sovracomunale \n(valida a fini statistici)": 'sub_region',
+    "Denominazione dell'Unità territoriale sovracomunale \n(valida a fini statistici)":
+        'sub_region',
     'Denominazione regione': 'region',
     'Codice Comune formato numerico': 'city_code'
 }
