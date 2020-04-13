@@ -1,3 +1,10 @@
+"""
+Retrieve data from Italian census.
+
+Credits: http://demo.istat.it/index.html
+License: http://creativecommons.org/licenses/by/3.0/it/
+"""
+
 from io import BytesIO
 from zipfile import ZipFile
 

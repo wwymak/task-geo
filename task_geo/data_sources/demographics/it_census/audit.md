@@ -1,23 +1,5 @@
 # ITALIAN CENSUS
-"""Retrieve geographic data from Italian National Institute of Statistics.
 
-Credits: https://www.istat.it/it/archivio/222527
-License: http://creativecommons.org/licenses/by/3.0/it/
-
-"""
-"""Retrieve data from Italian census.
-
-Credits: http://demo.istat.it/index.html
-License: http://creativecommons.org/licenses/by/3.0/it/
-
-"""#
-"""Retrieve territorial names from Italian National Institute of Statistics.
-This dataset helps to link communes with their parent provinces and regions
-
-Credits: https://www.istat.it/it/archivio/6789
-License: http://creativecommons.org/licenses/by/3.0/it/
-
-"""
 
 ## General information
 

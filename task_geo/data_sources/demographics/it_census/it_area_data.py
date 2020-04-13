@@ -1,3 +1,10 @@
+"""
+Retrieve geographic data from Italian National Institute of Statistics.
+
+Credits: https://www.istat.it/it/archivio/222527
+License: http://creativecommons.org/licenses/by/3.0/it/
+
+"""
 from io import BytesIO
 from zipfile import ZipFile
 
