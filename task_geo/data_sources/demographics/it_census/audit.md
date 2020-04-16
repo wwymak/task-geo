@@ -56,14 +56,21 @@
 
 ## Transformations applied
 
-(List all the transformation done to your data from the moment you retrieve it, to the
-moment your data source returns it, this includes, but is not limited to:
-- Filtering
-- Aggregation
-- Merging
-- Enriching
-- Decoding / Encoding
-- Change of Units
-- Adding/removing columns
-- ...
-)
+#### Area data per comune (city):
+- simple renaming of columns from italian to english, and selecting the `city_code`, `city` and `area` columns
+
+#### Comune -> Province -> Region mapping:
+- simple renaming of columns from italian to english, and selecting the `city_code`, `region`, `sub_region`, `city`
+
+#### Main demographic data per comune:
+- each row in the raw data correspond to the population per age per city (e.g. population of 10 years old in Milan)
+- from the population data, calculate the total population per city/comune by summing total males + total females
+- filter out the rows that have age==999 (since this indicates the total)
+- split the age ranges into buckets of 5 years
+- groupby age group, calculate the total males/females/population by age group, and the ratio of population in each age group
+- pivot data so each row correspond to 1 city
+
+#### lifestyle metrics per region
+- download data from istat-- you have to visit the relevant page and click on 'export' from the interactive menu, there is no option of doing this automatically(the link the frontend generates is not callable from code)
+- filter rows to only include data that is 'per 100 population' tp get the ratio
+- pivot data to have 1 row per region
