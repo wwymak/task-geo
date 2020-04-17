@@ -55,6 +55,11 @@
         "schema": {
             "fields": [
                 {
+                    "name": "region",
+                    "description": "Region name",
+                    "type": "str"
+                },
+                {
                     "name": "ratio_underweight",
                     "description": "ratio of population that is underweight",
                     "type": "float"
