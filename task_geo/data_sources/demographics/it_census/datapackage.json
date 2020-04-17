@@ -1,20 +1,140 @@
 {
-    "title": "",
-    "subtitle": "",
-    "description": "",
+    "title": "Demographics data for italy on the comune (city) level.",
+    "description": "Population and health metrics for italy, sourced from Italian Institute for Statistics",
     "resources": [{
-        "description": "",
+        "description": "population data on commune level",
         "schema": {
             "fields": [
                 {
-                    "name": "",
-                    "description": "",
-                    "type": ""
+                    "name": "country",
+                    "description": "country iso-2 code",
+                    "type": "str"
                 },
+                {
+                    "name": "region",
+                    "description": "Region of Italy (e.g Calabria)",
+                    "type": "str"
+                },
+                {
+                    "name": "sub_region",
+                    "description": "Provinces of Italy (e.g. Bologna)",
+                    "type": "str"
+                },
+                {
+                    "name": "city",
+                    "description": "Communes of Italy (e.g. Milano)",
+                    "type": "str"
+                },
+                {
+                    "name": "area",
+                    "description": "land area of commune in km^2",
+                    "type": "float"
+                },
+                {
+                    "name": "population_density",
+                    "description": "number of people per km^2 in commune",
+                    "type": "float"
+                },{
+                    "name": "male_ratio",
+                    "description": "proportion of population that is male",
+                    "type": "float"
+                },{
+                    "name": "female_ratio",
+                    "description": "proportion of population that is female",
+                    "type": "float"
+                },{
+                    "name": "ratio_age_[min_age]-[max_age]",
+                    "description": "ratio of population that has age [min_age] to [max_age] (inclusive on both ends)",
+                    "type": "float"
+                }
+            ]
+        }
+    },
+    {
+        "description": "lifestyle and health data on region level",
+        "schema": {
+            "fields": [
+                {
+                    "name": "ratio_underweight",
+                    "description": "ratio of population that is underweight",
+                    "type": "float"
+                },
+                {
+                    "name": "ratio_normal_weight",
+                    "description": "ratio of population that has normal weight",
+                    "type": "float"
+                },
+                {
+                    "name": "ratio_overweight",
+                    "description": "ratio of population that are overweight",
+                    "type": "float"
+                },
+                {
+                    "name": "ratio_obese",
+                    "description": "ratio of population that are obese",
+                    "type": "float"
+                },
+                {
+                    "name": "ratio_allergic_diseases",
+                    "description": "ratio of population that suffers from allergy",
+                    "type": "float"
+                },
+                {
+                    "name": "ratio_chronic_bronchitis",
+                    "description": "ratio of population that suffers from chronic bronchitis",
+                    "type": "float"
+                },
+                {
+                    "name": "ratio_gastric_duodenal_ulcer",
+                    "description": "ratio of population that suffers from gastric ulcers",
+                    "type": "float"
+                },
+                {
+                    "name": "ratio_heart_diseases",
+                    "description": "ratio of population that suffers from heart disease",
+                    "type": "float"
+                },
+                {
+                    "name": "ratio_diabetes",
+                    "description": "ratio of population that suffers from diabetes",
+                    "type": "float"
+                },
+                {
+                    "name": "ratio_nervous_disorders",
+                    "description": "ratio of population that suffers from nervous disorders",
+                    "type": "float"
+                },
+                {
+                    "name": "ratio_arthritis",
+                    "description": "ratio of population that suffers from arthritis",
+                    "type": "float"
+                },
+                {
+                    "name": "ratio_nervous_disorders",
+                    "description": "ratio of population that suffers from nervous disorders",
+                    "type": "float"
+                },
+                {
+                    "name": "ratio_hypertension",
+                    "description": "ratio of population that suffers from hypertension",
+                    "type": "float"
+                },
+                {
+                    "name": "ratio_osteoporosis",
+                    "description": "ratio of population that suffers from osteoporosis",
+                    "type": "float"
+                },
+                {
+                    "name": "ratio_smoking",
+                    "description": "ratio of population that smokes",
+                    "type": "float"
+                }
             ]
         }
     }],
     "keywords": [
-        "coronawhy"
+        "coronawhy",
+        "demographics",
+        "italy"
     ]
 }
